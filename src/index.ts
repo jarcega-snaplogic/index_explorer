@@ -56,11 +56,26 @@ app.get('/api/health', (_req, res) => {
   });
 });
 
-// Serve static files (including our HTML frontend)
+// Serve HTML files through Express routes
+// Support both root and OpenRun base paths
+const htmlRoutes = ['/', '/index.html', '/simple-frontend.html'];
+const basePaths = ['', '/sl/pinecone-manager'];
+
+basePaths.forEach(basePath => {
+  htmlRoutes.forEach(route => {
+    app.get(basePath + route, (_req, res) => {
+      const fileName = route === '/' ? 'index.html' : route.substring(1);
+      res.sendFile(fileName, { root: '.' });
+    });
+  });
+});
+
+// Also serve static files as fallback
 app.use(express.static('.'));
 
-// API routes
+// API routes - support both root and OpenRun base paths
 app.use('/api', indexRoutes);
+app.use('/sl/pinecone-manager/api', indexRoutes);
 
 // 404 handler - for all those typos
 app.use((req, res) => {
