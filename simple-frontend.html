@@ -882,6 +882,564 @@
             padding: 10px;
         }
 
+        /* Document Console Styles */
+        .document-console {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .console-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .console-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .console-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .console-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .page-size-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .control-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-right: 5px;
+        }
+
+        .btn-page-size {
+            padding: 6px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-width: 40px;
+        }
+
+        .btn-page-size:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .btn-page-size.active {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            font-weight: bold;
+        }
+
+        .sorted-column {
+            background-color: rgba(0, 123, 255, 0.1) !important;
+        }
+
+        .sorted-column .column-header {
+            font-weight: bold;
+        }
+
+        .sorted-column .column-sort-btn {
+            color: #007bff !important;
+            font-weight: bold;
+        }
+
+        /* Advanced Search & Filter Panel */
+        .search-filter-panel {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-bottom: 2px solid #dee2e6;
+            padding: 15px 20px;
+        }
+
+        .search-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .search-bar-container {
+            flex: 1;
+            position: relative;
+            max-width: 450px;
+            margin-right: 50px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 40px 12px 15px;
+            border: 2px solid #ced4da;
+            border-radius: 25px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+        }
+
+        .search-clear-btn {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #6c757d;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 4px;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .search-clear-btn:hover {
+            background: #e9ecef;
+            color: #495057;
+        }
+
+        .search-results-indicator {
+            position: absolute;
+            top: -8px;
+            right: 50px;
+            background: #007bff;
+            color: white;
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .advanced-filter-toggle {
+            background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .advanced-filter-toggle:hover {
+            background: linear-gradient(135deg, #5a6268 0%, #495057 100%);
+            transform: translateY(-1px);
+        }
+
+        .advanced-filter-toggle.active {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+        }
+
+        .advanced-filters {
+            margin-top: 15px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .filter-header h4 {
+            margin: 0;
+            color: #495057;
+            font-size: 16px;
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .filter-item {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+            overflow: hidden;
+            min-width: 0;
+        }
+
+        .filter-item label {
+            display: block;
+            font-weight: bold;
+            color: #495057;
+            margin-bottom: 5px;
+            font-size: 13px;
+        }
+
+        .filter-input {
+            width: 100%;
+            max-width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 13px;
+            box-sizing: border-box;
+        }
+
+        .filter-input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .active-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+            padding: 10px 0;
+            min-height: 20px;
+        }
+
+        .active-filters:empty {
+            display: none;
+        }
+
+        .filter-chip {
+            background: #007bff;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .filter-chip-remove {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .filter-chip-remove:hover {
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+        }
+
+        .btn-small {
+            font-size: 12px;
+            padding: 6px 12px;
+        }
+
+        .document-count {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .console-content {
+            padding: 0;
+        }
+
+        .console-table-container {
+            overflow-x: auto;
+        }
+
+        .console-table {
+            width: 100%;
+            margin: 0;
+        }
+
+        .console-table th {
+            background: #f8f9fa;
+            padding: 8px;
+            text-align: left;
+            border-bottom: 2px solid #dee2e6;
+            position: relative;
+            min-width: 120px;
+            max-width: 200px;
+        }
+
+        .console-table td {
+            padding: 8px;
+            border-bottom: 1px solid #dee2e6;
+            vertical-align: middle;
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .metadata-column {
+            border-left: 1px solid #dee2e6;
+        }
+
+        .column-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .column-name {
+            font-weight: 600;
+            font-size: 12px;
+            color: #495057;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .column-sort-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 10px;
+            padding: 2px;
+            color: #6c757d;
+            opacity: 0.6;
+        }
+
+        .column-sort-btn:hover {
+            opacity: 1;
+            background: #e9ecef;
+            border-radius: 2px;
+        }
+
+        .metadata-value-cell {
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+        }
+
+        .metadata-value {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .id-cell {
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            color: #495057;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .actions-cell {
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .table-info {
+            padding: 10px 15px;
+            background: #e9ecef;
+            border-bottom: 1px solid #dee2e6;
+            font-size: 12px;
+            color: #6c757d;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .column-count {
+            font-weight: 600;
+        }
+
+        .metadata-keys {
+            font-style: italic;
+            max-width: 60%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .console-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .metadata-cell {
+            max-width: 300px;
+        }
+
+        .metadata-preview {
+            background: #e9ecef;
+            padding: 6px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            color: #495057;
+        }
+
+        .metadata-preview:hover {
+            background: #dee2e6;
+        }
+
+        .btn-small {
+            padding: 4px 8px;
+            font-size: 12px;
+            margin-right: 4px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .btn-small.btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-small:not(.btn-danger) {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-small:hover {
+            opacity: 0.8;
+        }
+
+        .console-pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .pagination-left, .pagination-center, .pagination-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pagination-center {
+            flex: 1;
+            justify-content: center;
+        }
+
+        .page-indicator {
+            font-weight: 600;
+            color: #495057;
+            margin: 0 10px;
+            font-size: 14px;
+        }
+
+        /* Fullscreen Console Styles */
+        .fullscreen-console {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            z-index: 9999 !important;
+            background: white !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            overflow: hidden !important;
+        }
+
+        .fullscreen-console .console-content {
+            height: calc(100vh - 80px);
+            overflow-y: auto;
+        }
+
+        .fullscreen-console .console-table-container {
+            height: calc(100vh - 160px);
+            overflow: auto;
+        }
+
+        /* Column Resizing */
+        .console-table th {
+            position: relative;
+            resize: horizontal;
+            overflow: hidden;
+        }
+
+        .console-table th:hover {
+            cursor: col-resize;
+        }
+
+        .column-resizer {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            cursor: col-resize;
+            background: transparent;
+            z-index: 1;
+        }
+
+        .column-resizer:hover {
+            background: #007bff;
+        }
+
+        .pagination-info {
+            color: #6c757d;
+            font-size: 14px;
+        }
+
+        .bulk-actions button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .document-details {
+            margin-bottom: 20px;
+        }
+
+        .detail-section {
+            margin-bottom: 15px;
+        }
+
+        .detail-section strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #495057;
+        }
+
+        .detail-section code {
+            background: #f8f9fa;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+        }
+
         .no-duplicates {
             text-align: center;
             padding: 40px 20px;
@@ -1144,8 +1702,8 @@
                     <button class="namespace-btn dedupe-btn" onclick="deduplicateNamespace('${namespace || 'default'}')">
                         🧪 Deduplicate
                     </button>
-                    <button class="namespace-btn search-namespace-btn" onclick="searchNamespace('${namespace || 'default'}')">
-                        🔎 Search
+                    <button class="namespace-btn console-namespace-btn" onclick="openDocumentConsole('${namespace || 'default'}')">
+                        📋 Document Console
                     </button>
                     <span style="margin-left: auto; color: #666; font-size: 14px;">
                         Showing ${documents.length} random documents
@@ -2031,9 +2589,1231 @@
             document.body.insertAdjacentHTML('beforeend', modalContent);
         }
 
-        function searchNamespace(namespace) {
-            alert(`Search Namespace: Advanced search within namespace "${namespace}"\n\nSupports metadata filters, text search, and vector similarity.\n\nComing soon!`);
+        function showDeleteConfirmationModal(title, message, warning, confirmCallback) {
+            const modalContent = `
+                <div class="modal-overlay" onclick="closeModal()">
+                    <div class="modal-content" onclick="event.stopPropagation()">
+                        <div class="modal-header" style="background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);">
+                            <h3 style="color: white;">⚠️ ${title}</h3>
+                            <button onclick="closeModal()" class="close-btn" style="color: white;">✕</button>
+                        </div>
+                        <div class="modal-body">
+                            <div style="background: #fff3cd; border: 1px solid #ffc107; padding: 15px; border-radius: 6px; margin-bottom: 20px;">
+                                <p style="margin: 8px 0; color: #856404;"><strong>${message}</strong></p>
+                                <p style="margin: 10px 0 0 0; color: #dc3545; font-weight: bold;">
+                                    ${warning}
+                                </p>
+                            </div>
+                            <div class="modal-actions">
+                                <button onclick="closeModal()" class="modal-btn modal-btn-cancel">Cancel</button>
+                                <button onclick="closeModal(); (${confirmCallback.toString()})();" class="modal-btn" style="background: #dc3545; color: white;">
+                                    Confirm Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.body.insertAdjacentHTML('beforeend', modalContent);
         }
+
+        async function openDocumentConsole(namespace) {
+            if (!selectedIndex) {
+                showErrorModal('No Index Selected', 'Please select an index first.');
+                return;
+            }
+
+            try {
+                // Show the document console interface
+                showDocumentConsole(namespace);
+            } catch (error) {
+                console.error('Failed to open document console:', error);
+                showErrorModal('Console Error', `Failed to open document console: ${error.message}`);
+            }
+        }
+
+        function showDocumentConsole(namespace) {
+            // Update the header to show we're in console mode
+            document.getElementById('selected-index-title').textContent = `Document Console: ${selectedIndex} → ${namespace}`;
+
+            // Get the container and show initial loading state
+            const container = document.getElementById('documents-container');
+            container.innerHTML = `
+                <div class="document-console">
+                    <div class="console-header">
+                        <div class="console-controls">
+                            <button onclick="loadIndexData()" class="btn btn-secondary" style="margin-right: 10px;">
+                                ← Back to Index
+                            </button>
+                            <span class="console-title">Document Console</span>
+                        </div>
+                        <div class="console-actions">
+                            <button id="fullscreenBtn" onclick="toggleFullscreen()" class="btn btn-secondary" style="background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: white; margin-right: 10px;">
+                                🔍 Expand
+                            </button>
+                            <div class="page-size-controls">
+                                <span class="control-label">Show:</span>
+                                <button onclick="changePageSize(25)" class="btn-page-size" data-size="25">25</button>
+                                <button onclick="changePageSize(50)" class="btn-page-size" data-size="50">50</button>
+                                <button onclick="changePageSize(100)" class="btn-page-size" data-size="100">100</button>
+                            </div>
+                            <span id="documentCount" class="document-count">Loading...</span>
+                        </div>
+                    </div>
+
+                    <div class="search-filter-panel">
+                        <div class="search-section">
+                            <div class="search-bar-container">
+                                <input type="text" id="globalSearch" placeholder="Search across all metadata fields..." class="search-input">
+                                <button onclick="clearGlobalSearch()" class="search-clear-btn" id="searchClearBtn" style="display: none;">✕</button>
+                                <div class="search-results-indicator" id="searchResultsIndicator"></div>
+                            </div>
+                            <button onclick="toggleAdvancedFilters()" class="advanced-filter-toggle" id="advancedFilterToggle">
+                                🔧 Advanced Filters
+                            </button>
+                        </div>
+
+                        <div class="active-filters" id="activeFilters">
+                            <!-- Active filter chips will appear here -->
+                        </div>
+
+                        <div class="advanced-filters" id="advancedFilters" style="display: none;">
+                            <div class="filter-header">
+                                <h4>Filter by Fields</h4>
+                                <button onclick="clearAllFilters()" class="btn btn-secondary btn-small">Clear All</button>
+                            </div>
+                            <div class="filters-grid" id="filtersGrid">
+                                <!-- Dynamic filters will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="console-content">
+                        <div class="loading">
+                            <h3>📋 Loading Document Console...</h3>
+                            <p>Fetching documents from namespace "${namespace}"</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Initialize console data
+            initializeDocumentConsole(namespace);
+        }
+
+        let currentConsoleData = {
+            namespace: '',
+            documents: [], // Current page documents (subset of filteredDocuments)
+            allDocuments: [], // All fetched documents from server
+            filteredDocuments: [], // Documents after applying search/filters
+            currentPage: 0,
+            pageSize: 25, // Default to 25 documents per page
+            totalFetched: 0,
+            totalAvailable: 0,
+            isFullscreen: false,
+            metadataColumns: [],
+            sortColumn: null,
+            sortDirection: 'asc',
+            // Search and filter state
+            globalSearchTerm: '',
+            activeFilters: {}, // { fieldName: { type: 'text|date|number', value: any, operator: 'contains|equals|range' } }
+            showAdvancedFilters: false
+        };
+
+        async function initializeDocumentConsole(namespace) {
+            try {
+                currentConsoleData.namespace = namespace;
+                currentConsoleData.pageSize = 25; // Default to 25 per page
+                currentConsoleData.currentPage = 0;
+
+                // Initialize page size buttons
+                setTimeout(() => {
+                    document.querySelectorAll('.btn-page-size').forEach(btn => {
+                        btn.classList.remove('active');
+                        if (parseInt(btn.dataset.size) === currentConsoleData.pageSize) {
+                            btn.classList.add('active');
+                        }
+                    });
+                }, 100);
+
+                // Fetch initial documents
+                await fetchConsoleDocuments();
+
+                // Render the console table
+                renderConsoleTable();
+
+            } catch (error) {
+                console.error('Failed to initialize document console:', error);
+                const container = document.querySelector('.console-content');
+                container.innerHTML = `
+                    <div class="error">
+                        <h3>❌ Failed to Load Console</h3>
+                        <p>Error: ${error.message}</p>
+                        <button onclick="loadIndexData()" class="btn btn-secondary">← Back to Index</button>
+                    </div>
+                `;
+            }
+        }
+
+        async function fetchConsoleDocuments() {
+            // For console experience, fetch a larger dataset for sorting/filtering
+            // This ensures sort works on full dataset, not just current page
+            const fetchSize = Math.max(1000, currentConsoleData.pageSize * 4);
+
+            const response = await fetch(`${API_URL}/indexes/${selectedIndex}/documents?topK=${fetchSize}&namespace=${encodeURIComponent(currentConsoleData.namespace)}`);
+            const result = await response.json();
+
+            if (!result.success) {
+                throw new Error(result.error || 'Failed to fetch documents');
+            }
+
+            // Store all fetched documents for client-side pagination/sorting
+            currentConsoleData.allDocuments = result.data || [];
+            currentConsoleData.totalFetched = currentConsoleData.allDocuments.length;
+
+            // Apply current filters and search
+            applyFiltersAndSearch();
+
+            // Apply current sorting if any
+            if (currentConsoleData.sortColumn) {
+                applySortToFilteredDocuments();
+            }
+
+            // Extract current page from filtered documents
+            updateCurrentPageDocuments();
+        }
+
+        // Core filtering and search functions
+        function applyFiltersAndSearch() {
+            let filtered = [...currentConsoleData.allDocuments];
+
+            // Apply global search if active
+            if (currentConsoleData.globalSearchTerm) {
+                filtered = applyGlobalSearch(filtered, currentConsoleData.globalSearchTerm);
+            }
+
+            // Apply field-specific filters
+            filtered = applyFieldFilters(filtered, currentConsoleData.activeFilters);
+
+            currentConsoleData.filteredDocuments = filtered;
+        }
+
+        function applyGlobalSearch(documents, searchTerm) {
+            if (!searchTerm.trim()) return documents;
+
+            const normalizedSearch = searchTerm.toLowerCase().trim();
+
+            return documents.filter(doc => {
+                // Search in document ID
+                if (doc.id.toLowerCase().includes(normalizedSearch)) {
+                    return true;
+                }
+
+                // Search in all metadata fields
+                if (doc.metadata) {
+                    for (const [key, value] of Object.entries(doc.metadata)) {
+                        if (value != null) {
+                            const normalizedValue = String(value).toLowerCase();
+                            if (normalizedValue.includes(normalizedSearch)) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+
+                return false;
+            });
+        }
+
+        function applyFieldFilters(documents, filters) {
+            if (Object.keys(filters).length === 0) return documents;
+
+            return documents.filter(doc => {
+                for (const [fieldName, filter] of Object.entries(filters)) {
+                    let fieldValue;
+
+                    if (fieldName === 'id') {
+                        fieldValue = doc.id;
+                    } else {
+                        fieldValue = doc.metadata && doc.metadata[fieldName];
+                    }
+
+                    if (!matchesFilter(fieldValue, filter)) {
+                        return false;
+                    }
+                }
+                return true;
+            });
+        }
+
+        function matchesFilter(value, filter) {
+            if (value == null) return false;
+
+            switch (filter.type) {
+                case 'text':
+                    const normalizedValue = String(value).toLowerCase();
+                    const normalizedFilter = filter.value.toLowerCase();
+
+                    switch (filter.operator) {
+                        case 'contains': return normalizedValue.includes(normalizedFilter);
+                        case 'equals': return normalizedValue === normalizedFilter;
+                        case 'starts_with': return normalizedValue.startsWith(normalizedFilter);
+                        case 'ends_with': return normalizedValue.endsWith(normalizedFilter);
+                        default: return normalizedValue.includes(normalizedFilter);
+                    }
+
+                case 'number':
+                    const numValue = parseFloat(value);
+                    const numFilter = parseFloat(filter.value);
+                    if (isNaN(numValue) || isNaN(numFilter)) return false;
+
+                    switch (filter.operator) {
+                        case 'equals': return numValue === numFilter;
+                        case 'greater': return numValue > numFilter;
+                        case 'less': return numValue < numFilter;
+                        case 'greater_equal': return numValue >= numFilter;
+                        case 'less_equal': return numValue <= numFilter;
+                        default: return numValue === numFilter;
+                    }
+
+                case 'date':
+                    try {
+                        const dateValue = new Date(value);
+                        const dateFilter = new Date(filter.value);
+                        if (isNaN(dateValue.getTime()) || isNaN(dateFilter.getTime())) return false;
+
+                        switch (filter.operator) {
+                            case 'equals': return dateValue.toDateString() === dateFilter.toDateString();
+                            case 'after': return dateValue > dateFilter;
+                            case 'before': return dateValue < dateFilter;
+                            default: return dateValue.toDateString() === dateFilter.toDateString();
+                        }
+                    } catch (e) {
+                        return false;
+                    }
+
+                default:
+                    return String(value).toLowerCase().includes(String(filter.value).toLowerCase());
+            }
+        }
+
+        function applySortToFilteredDocuments() {
+            const docs = currentConsoleData.filteredDocuments;
+            const columnKey = currentConsoleData.sortColumn;
+            const direction = currentConsoleData.sortDirection;
+
+            docs.sort((a, b) => {
+                let valueA, valueB;
+
+                if (columnKey === 'id') {
+                    valueA = a.id;
+                    valueB = b.id;
+                } else {
+                    valueA = a.metadata && a.metadata[columnKey];
+                    valueB = b.metadata && b.metadata[columnKey];
+                }
+
+                // Handle null/undefined values
+                if (!valueA && !valueB) return 0;
+                if (!valueA) return direction === 'asc' ? 1 : -1;
+                if (!valueB) return direction === 'asc' ? -1 : 1;
+
+                // Smart type-aware comparison
+                if (typeof valueA === 'number' && typeof valueB === 'number') {
+                    return direction === 'asc' ? valueA - valueB : valueB - valueA;
+                }
+
+                // Convert to strings for comparison
+                valueA = String(valueA).toLowerCase();
+                valueB = String(valueB).toLowerCase();
+
+                const comparison = valueA.localeCompare(valueB);
+                return direction === 'asc' ? comparison : -comparison;
+            });
+        }
+
+        function updateCurrentPageDocuments() {
+            const startIndex = currentConsoleData.currentPage * currentConsoleData.pageSize;
+            const endIndex = startIndex + currentConsoleData.pageSize;
+            currentConsoleData.documents = currentConsoleData.filteredDocuments.slice(startIndex, endIndex);
+        }
+
+        function renderConsoleTable() {
+            const container = document.querySelector('.console-content');
+            const docs = currentConsoleData.documents;
+
+            if (docs.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 40px; color: #888;">
+                        <p>No documents found in namespace "${currentConsoleData.namespace}".</p>
+                        <button onclick="loadIndexData()" class="btn btn-secondary">← Back to Index</button>
+                    </div>
+                `;
+                return;
+            }
+
+            // Update document count
+            const totalDocs = currentConsoleData.allDocuments.length;
+            const filteredDocs = currentConsoleData.filteredDocuments.length;
+            const currentDocs = docs.length;
+            const totalPages = Math.ceil(filteredDocs / currentConsoleData.pageSize);
+
+            let countText = '';
+            if (filteredDocs === totalDocs) {
+                countText = `${totalDocs} docs loaded (${currentDocs} on page ${currentConsoleData.currentPage + 1}/${totalPages})`;
+            } else {
+                countText = `${filteredDocs} of ${totalDocs} docs (${currentDocs} on page ${currentConsoleData.currentPage + 1}/${totalPages})`;
+            }
+            document.getElementById('documentCount').textContent = countText;
+
+            // Analyze all metadata to find unique keys
+            const allMetadataKeys = new Set();
+            docs.forEach(doc => {
+                if (doc.metadata) {
+                    Object.keys(doc.metadata).forEach(key => allMetadataKeys.add(key));
+                }
+            });
+
+            const metadataColumns = Array.from(allMetadataKeys).sort();
+            currentConsoleData.metadataColumns = metadataColumns; // Store for later use
+
+            // Build dynamic table headers
+            const headerColumns = `
+                <th style="width: 40px; position: relative;">
+                    <input type="checkbox" id="selectAll" onchange="toggleSelectAll()">
+                    <div class="column-resizer" onmousedown="startResize(event, 0)"></div>
+                </th>
+                <th style="width: 200px; position: relative;" class="${currentConsoleData.sortColumn === 'id' ? 'sorted-column' : ''}">
+                    <div class="column-header">
+                        <span class="column-name">Document ID</span>
+                        <button class="column-sort-btn" onclick="sortByColumn('id')">
+                            ${currentConsoleData.sortColumn === 'id' ?
+                                (currentConsoleData.sortDirection === 'asc' ? '↑' : '↓') : '⇅'}
+                        </button>
+                    </div>
+                    <div class="column-resizer" onmousedown="startResize(event, 1)"></div>
+                </th>
+                ${metadataColumns.map((key, index) => `
+                    <th class="metadata-column ${currentConsoleData.sortColumn === key ? 'sorted-column' : ''}" title="${key}" style="position: relative;">
+                        <div class="column-header">
+                            <span class="column-name">${key}</span>
+                            <button class="column-sort-btn" onclick="sortByColumn('${key}')">
+                                ${currentConsoleData.sortColumn === key ?
+                                    (currentConsoleData.sortDirection === 'asc' ? '↑' : '↓') : '⇅'}
+                            </button>
+                        </div>
+                        <div class="column-resizer" onmousedown="startResize(event, ${index + 2})"></div>
+                    </th>
+                `).join('')}
+                <th style="width: 120px; position: relative;">
+                    <div class="column-header">
+                        <span class="column-name">Actions</span>
+                    </div>
+                </th>
+            `;
+
+            // Build table rows with dynamic metadata columns
+            const tableRows = docs.map((doc, index) => `
+                <tr>
+                    <td>
+                        <input type="checkbox" class="doc-checkbox" value="${doc.id}">
+                    </td>
+                    <td class="document-id" title="${doc.id}">
+                        <div class="id-cell">${doc.id}</div>
+                    </td>
+                    ${metadataColumns.map(key => {
+                        const value = doc.metadata && doc.metadata[key];
+                        const displayValue = formatMetadataValue(value);
+                        return `
+                            <td class="metadata-value-cell" title="${key}: ${displayValue}">
+                                <div class="metadata-value">${displayValue}</div>
+                            </td>
+                        `;
+                    }).join('')}
+                    <td class="actions-cell">
+                        <button onclick="showDocumentDetails('${doc.id}', ${index})" class="btn-small" title="View Details">👁</button>
+                        <button onclick="deleteConsoleDocument('${doc.id}')" class="btn-small btn-danger" title="Delete">🗑</button>
+                    </td>
+                </tr>
+            `).join('');
+
+            // Create the complete table
+            const tableHTML = `
+                <div class="console-table-container">
+                    <div class="table-info">
+                        <span class="column-count">Columns: ${metadataColumns.length + 3}</span>
+                        <span class="metadata-keys">Metadata fields: ${metadataColumns.join(', ')}</span>
+                    </div>
+                    <table class="document-table console-table">
+                        <thead>
+                            <tr>
+                                ${headerColumns}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${tableRows}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="console-pagination">
+                    <div class="pagination-left">
+                        <button onclick="refreshConsole()" class="btn btn-secondary">
+                            🔄 Refresh
+                        </button>
+                        <span class="pagination-info">
+                            Page ${currentConsoleData.currentPage + 1} of ${Math.ceil(currentConsoleData.filteredDocuments.length / currentConsoleData.pageSize)} • ${currentConsoleData.filteredDocuments.length} documents
+                        </span>
+                    </div>
+
+                    <div class="pagination-center">
+                        <button onclick="goToPage(${currentConsoleData.currentPage - 1})"
+                                class="btn btn-secondary"
+                                ${currentConsoleData.currentPage === 0 ? 'disabled' : ''}>
+                            ← Previous
+                        </button>
+                        <span class="page-indicator">
+                            Showing ${docs.length} of ${currentConsoleData.filteredDocuments.length}
+                        </span>
+                        <button onclick="goToPage(${currentConsoleData.currentPage + 1})"
+                                class="btn btn-secondary"
+                                ${currentConsoleData.currentPage >= Math.ceil(currentConsoleData.filteredDocuments.length / currentConsoleData.pageSize) - 1 ? 'disabled' : ''}>
+                            Next →
+                        </button>
+                    </div>
+
+                    <div class="pagination-right">
+                        <div class="bulk-actions">
+                            <button onclick="bulkDeleteSelected()" class="btn btn-danger" disabled id="bulkDeleteBtn">
+                                Delete Selected
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            container.innerHTML = tableHTML;
+
+            // Initialize search listeners if not already done
+            setTimeout(() => {
+                initializeSearchListeners();
+                // Also initialize filter chips display
+                updateActiveFilterChips();
+            }, 100);
+        }
+
+        function formatMetadataValue(value) {
+            if (value === null || value === undefined) {
+                return '<empty>';
+            }
+            if (typeof value === 'object') {
+                return JSON.stringify(value);
+            }
+            if (typeof value === 'string' && value.length > 50) {
+                return value.substring(0, 47) + '...';
+            }
+            return String(value);
+        }
+
+        function sortByColumn(columnKey) {
+            // Toggle sort direction
+            const currentSort = currentConsoleData.sortColumn;
+            const currentDirection = currentConsoleData.sortDirection || 'asc';
+
+            let newDirection = 'asc';
+            if (currentSort === columnKey && currentDirection === 'asc') {
+                newDirection = 'desc';
+            }
+
+            currentConsoleData.sortColumn = columnKey;
+            currentConsoleData.sortDirection = newDirection;
+
+            // Apply sorting to filtered documents (not all documents)
+            applySortToFilteredDocuments();
+
+            // Reset to first page since sorting changes order
+            currentConsoleData.currentPage = 0;
+
+            // Update current page documents from sorted filtered dataset
+            updateCurrentPageDocuments();
+
+            // Re-render with sorted data
+            renderConsoleTable();
+        }
+
+        function updatePagination() {
+            const newPageSize = parseInt(document.getElementById('pageSize').value);
+            if (newPageSize !== currentConsoleData.pageSize) {
+                currentConsoleData.pageSize = newPageSize;
+                currentConsoleData.currentPage = 0;
+
+                // Show loading
+                const container = document.querySelector('.console-content');
+                container.innerHTML = `
+                    <div class="loading">
+                        <h3>📋 Updating Console...</h3>
+                        <p>Fetching ${newPageSize} documents per page...</p>
+                    </div>
+                `;
+
+                // Fetch new data
+                fetchConsoleDocuments().then(() => {
+                    renderConsoleTable();
+                }).catch(error => {
+                    console.error('Failed to update console:', error);
+                    showErrorModal('Update Failed', `Failed to update console: ${error.message}`);
+                });
+            }
+        }
+
+        function goToPage(newPage) {
+            // Calculate max pages from filtered documents
+            const maxPages = Math.ceil(currentConsoleData.filteredDocuments.length / currentConsoleData.pageSize);
+
+            if (newPage < 0 || newPage >= maxPages) return;
+
+            currentConsoleData.currentPage = newPage;
+
+            // Update current page documents from filtered documents (instant client-side pagination)
+            updateCurrentPageDocuments();
+
+            // Re-render with new page
+            renderConsoleTable();
+        }
+
+        function toggleFullscreen() {
+            const consoleElement = document.querySelector('.document-console');
+            const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+            currentConsoleData.isFullscreen = !currentConsoleData.isFullscreen;
+
+            if (currentConsoleData.isFullscreen) {
+                // Enter fullscreen
+                consoleElement.classList.add('fullscreen-console');
+                fullscreenBtn.innerHTML = '🔍 Exit Fullscreen';
+                fullscreenBtn.title = 'Exit fullscreen mode';
+            } else {
+                // Exit fullscreen
+                consoleElement.classList.remove('fullscreen-console');
+                fullscreenBtn.innerHTML = '🔍 Expand';
+                fullscreenBtn.title = 'Expand to fullscreen';
+            }
+        }
+
+        // Column resizing functionality
+        let isResizing = false;
+        let currentResizeColumn = null;
+        let startX = 0;
+        let startWidth = 0;
+
+        function startResize(event, columnIndex) {
+            event.preventDefault();
+            isResizing = true;
+            currentResizeColumn = columnIndex;
+            startX = event.clientX;
+
+            // Get the table and find the column
+            const table = document.querySelector('.console-table');
+            const headers = table.querySelectorAll('th');
+            const targetHeader = headers[columnIndex];
+            startWidth = targetHeader.offsetWidth;
+
+            // Add visual feedback
+            document.body.style.cursor = 'col-resize';
+            targetHeader.style.opacity = '0.7';
+
+            // Add event listeners for mousemove and mouseup
+            document.addEventListener('mousemove', handleResize);
+            document.addEventListener('mouseup', stopResize);
+        }
+
+        function handleResize(event) {
+            if (!isResizing) return;
+
+            const deltaX = event.clientX - startX;
+            const newWidth = Math.max(50, startWidth + deltaX); // Minimum width of 50px
+
+            // Update the column width
+            const table = document.querySelector('.console-table');
+            const headers = table.querySelectorAll('th');
+            const targetHeader = headers[currentResizeColumn];
+
+            // Apply the new width to both header and corresponding cells
+            targetHeader.style.width = newWidth + 'px';
+            targetHeader.style.minWidth = newWidth + 'px';
+            targetHeader.style.maxWidth = newWidth + 'px';
+
+            // Update all cells in this column
+            const rows = table.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                if (cells[currentResizeColumn]) {
+                    cells[currentResizeColumn].style.width = newWidth + 'px';
+                    cells[currentResizeColumn].style.minWidth = newWidth + 'px';
+                    cells[currentResizeColumn].style.maxWidth = newWidth + 'px';
+                }
+            });
+        }
+
+        function stopResize() {
+            if (isResizing) {
+                isResizing = false;
+                document.body.style.cursor = '';
+
+                // Remove visual feedback
+                const table = document.querySelector('.console-table');
+                const headers = table.querySelectorAll('th');
+                if (headers[currentResizeColumn]) {
+                    headers[currentResizeColumn].style.opacity = '';
+                }
+
+                currentResizeColumn = null;
+
+                // Remove event listeners
+                document.removeEventListener('mousemove', handleResize);
+                document.removeEventListener('mouseup', stopResize);
+            }
+        }
+
+        // Page size management
+        function changePageSize(newSize) {
+            currentConsoleData.pageSize = newSize;
+            currentConsoleData.currentPage = 0; // Reset to first page
+
+            // Update button states
+            document.querySelectorAll('.btn-page-size').forEach(btn => {
+                btn.classList.remove('active');
+                if (parseInt(btn.dataset.size) === newSize) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Update current page documents with new page size (instant)
+            updateCurrentPageDocuments();
+
+            // Re-render with new page size
+            renderConsoleTable();
+        }
+
+        // Search and Filter UI Functions
+        let searchDebounceTimer = null;
+
+        function initializeSearchListeners() {
+            const searchInput = document.getElementById('globalSearch');
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    debouncedGlobalSearch(this.value);
+                });
+            }
+        }
+
+        function debouncedGlobalSearch(searchTerm) {
+            // Clear previous timer
+            if (searchDebounceTimer) {
+                clearTimeout(searchDebounceTimer);
+            }
+
+            // Set new timer for 300ms delay
+            searchDebounceTimer = setTimeout(() => {
+                handleGlobalSearch(searchTerm);
+            }, 300);
+        }
+
+        function handleGlobalSearch(searchTerm) {
+            currentConsoleData.globalSearchTerm = searchTerm;
+            currentConsoleData.currentPage = 0; // Reset to first page
+
+            // Update search UI
+            const clearBtn = document.getElementById('searchClearBtn');
+            const indicator = document.getElementById('searchResultsIndicator');
+
+            if (searchTerm.trim()) {
+                clearBtn.style.display = 'block';
+            } else {
+                clearBtn.style.display = 'none';
+            }
+
+            // Apply filters and search
+            applyFiltersAndSearch();
+
+            // Apply current sorting if any
+            if (currentConsoleData.sortColumn) {
+                applySortToFilteredDocuments();
+            }
+
+            // Update pagination
+            updateCurrentPageDocuments();
+
+            // Update search results indicator
+            if (searchTerm.trim() && currentConsoleData.filteredDocuments.length !== currentConsoleData.allDocuments.length) {
+                indicator.textContent = `${currentConsoleData.filteredDocuments.length} found`;
+                indicator.style.display = 'block';
+            } else {
+                indicator.style.display = 'none';
+            }
+
+            // Re-render
+            renderConsoleTable();
+        }
+
+        function clearGlobalSearch() {
+            const searchInput = document.getElementById('globalSearch');
+            searchInput.value = '';
+            handleGlobalSearch('');
+        }
+
+        function toggleAdvancedFilters() {
+            const filtersPanel = document.getElementById('advancedFilters');
+            const toggleBtn = document.getElementById('advancedFilterToggle');
+
+            currentConsoleData.showAdvancedFilters = !currentConsoleData.showAdvancedFilters;
+
+            if (currentConsoleData.showAdvancedFilters) {
+                filtersPanel.style.display = 'block';
+                toggleBtn.classList.add('active');
+                toggleBtn.textContent = '🔧 Hide Filters';
+
+                // Generate dynamic filters when first opened
+                generateDynamicFilters();
+            } else {
+                filtersPanel.style.display = 'none';
+                toggleBtn.classList.remove('active');
+                toggleBtn.textContent = '🔧 Advanced Filters';
+            }
+        }
+
+        function clearAllFilters() {
+            currentConsoleData.activeFilters = {};
+            currentConsoleData.globalSearchTerm = '';
+            currentConsoleData.currentPage = 0;
+
+            // Clear UI
+            document.getElementById('globalSearch').value = '';
+            document.getElementById('searchClearBtn').style.display = 'none';
+            document.getElementById('searchResultsIndicator').style.display = 'none';
+
+            // Refresh data
+            applyFiltersAndSearch();
+            updateCurrentPageDocuments();
+            renderConsoleTable();
+            updateActiveFilterChips();
+        }
+
+        function generateDynamicFilters() {
+            const filtersGrid = document.getElementById('filtersGrid');
+            if (!filtersGrid) return;
+
+            // Ensure we have documents loaded
+            if (!currentConsoleData.allDocuments || currentConsoleData.allDocuments.length === 0) {
+                console.log('No documents available for filter generation');
+                filtersGrid.innerHTML = '<div class="filter-item"><p>Loading filters...</p></div>';
+                return;
+            }
+
+            // Analyze metadata fields from all documents to create intelligent filters
+            const fieldAnalysis = analyzeMetadataFields();
+
+            let filtersHTML = '';
+
+            // Always include Document ID filter
+            filtersHTML += createFieldFilter('id', 'Document ID', 'text');
+
+            // Create filters for each metadata field
+            for (const [fieldName, analysis] of Object.entries(fieldAnalysis)) {
+                filtersHTML += createFieldFilter(fieldName, fieldName, analysis.type, analysis);
+            }
+
+            filtersGrid.innerHTML = filtersHTML;
+            console.log(`Generated ${Object.keys(fieldAnalysis).length + 1} filters`);
+        }
+
+        function analyzeMetadataFields() {
+            const fieldAnalysis = {};
+
+            // Analyze each metadata field across all documents
+            currentConsoleData.allDocuments.forEach(doc => {
+                if (!doc.metadata) return;
+
+                for (const [key, value] of Object.entries(doc.metadata)) {
+                    if (!fieldAnalysis[key]) {
+                        fieldAnalysis[key] = {
+                            type: 'text',
+                            values: new Set(),
+                            isNumeric: true,
+                            isDate: true,
+                            sampleCount: 0
+                        };
+                    }
+
+                    const analysis = fieldAnalysis[key];
+                    analysis.sampleCount++;
+                    analysis.values.add(value);
+
+                    // Type detection
+                    if (value != null) {
+                        // Check if numeric
+                        if (analysis.isNumeric && (typeof value !== 'number' && isNaN(parseFloat(value)))) {
+                            analysis.isNumeric = false;
+                        }
+
+                        // Check if date
+                        if (analysis.isDate) {
+                            const dateTest = new Date(value);
+                            if (isNaN(dateTest.getTime()) || typeof value === 'number') {
+                                analysis.isDate = false;
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Determine final types
+            for (const [key, analysis] of Object.entries(fieldAnalysis)) {
+                if (analysis.isNumeric) {
+                    analysis.type = 'number';
+                } else if (analysis.isDate) {
+                    analysis.type = 'date';
+                } else if (analysis.values.size <= 10 && analysis.sampleCount > 5) {
+                    analysis.type = 'select'; // Categorical with few unique values
+                } else {
+                    analysis.type = 'text';
+                }
+            }
+
+            return fieldAnalysis;
+        }
+
+        function createFieldFilter(fieldName, displayName, type, analysis = null) {
+            const filterId = `filter_${fieldName.replace(/[^a-zA-Z0-9]/g, '_')}`;
+
+            let inputHTML = '';
+            let operatorHTML = '';
+
+            switch (type) {
+                case 'text':
+                    operatorHTML = `
+                        <select class="filter-input" id="${filterId}_operator" style="margin-bottom: 5px;">
+                            <option value="contains">Contains</option>
+                            <option value="equals">Equals</option>
+                            <option value="starts_with">Starts with</option>
+                            <option value="ends_with">Ends with</option>
+                        </select>
+                    `;
+                    inputHTML = `<input type="text" class="filter-input" id="${filterId}" placeholder="Enter text...">`;
+                    break;
+
+                case 'number':
+                    operatorHTML = `
+                        <select class="filter-input" id="${filterId}_operator" style="margin-bottom: 5px;">
+                            <option value="equals">Equals</option>
+                            <option value="greater">Greater than</option>
+                            <option value="less">Less than</option>
+                            <option value="greater_equal">Greater or equal</option>
+                            <option value="less_equal">Less or equal</option>
+                        </select>
+                    `;
+                    inputHTML = `<input type="number" class="filter-input" id="${filterId}" placeholder="Enter number...">`;
+                    break;
+
+                case 'date':
+                    operatorHTML = `
+                        <select class="filter-input" id="${filterId}_operator" style="margin-bottom: 5px;">
+                            <option value="equals">On date</option>
+                            <option value="after">After</option>
+                            <option value="before">Before</option>
+                        </select>
+                    `;
+                    inputHTML = `<input type="date" class="filter-input" id="${filterId}">`;
+                    break;
+
+                case 'select':
+                    const options = Array.from(analysis.values).sort().map(value =>
+                        `<option value="${value}">${value}</option>`
+                    ).join('');
+                    inputHTML = `
+                        <select class="filter-input" id="${filterId}">
+                            <option value="">All values</option>
+                            ${options}
+                        </select>
+                    `;
+                    break;
+            }
+
+            return `
+                <div class="filter-item" data-field="${fieldName}">
+                    <label for="${filterId}">${displayName}</label>
+                    ${operatorHTML}
+                    ${inputHTML}
+                    <button onclick="applyFieldFilter('${fieldName}')" class="btn btn-secondary btn-small" style="margin-top: 5px; width: 100%;">Apply</button>
+                </div>
+            `;
+        }
+
+        function applyFieldFilter(fieldName) {
+            const filterId = `filter_${fieldName.replace(/[^a-zA-Z0-9]/g, '_')}`;
+            const input = document.getElementById(filterId);
+            const operatorSelect = document.getElementById(`${filterId}_operator`);
+
+            if (!input || !input.value.trim()) {
+                // Remove filter if empty
+                delete currentConsoleData.activeFilters[fieldName];
+            } else {
+                // Determine filter type and operator
+                let type = 'text';
+                let operator = 'contains';
+
+                if (input.type === 'number') {
+                    type = 'number';
+                    operator = operatorSelect ? operatorSelect.value : 'equals';
+                } else if (input.type === 'date') {
+                    type = 'date';
+                    operator = operatorSelect ? operatorSelect.value : 'equals';
+                } else if (input.tagName === 'SELECT') {
+                    type = 'text';
+                    operator = 'equals';
+                } else {
+                    operator = operatorSelect ? operatorSelect.value : 'contains';
+                }
+
+                currentConsoleData.activeFilters[fieldName] = {
+                    type: type,
+                    operator: operator,
+                    value: input.value
+                };
+            }
+
+            // Reset to first page and apply filters
+            currentConsoleData.currentPage = 0;
+            applyFiltersAndSearch();
+
+            if (currentConsoleData.sortColumn) {
+                applySortToFilteredDocuments();
+            }
+
+            updateCurrentPageDocuments();
+            renderConsoleTable();
+            updateActiveFilterChips();
+        }
+
+        function updateActiveFilterChips() {
+            const activeFiltersContainer = document.getElementById('activeFilters');
+            if (!activeFiltersContainer) return;
+
+            const filters = currentConsoleData.activeFilters;
+            let chipsHTML = '';
+
+            for (const [fieldName, filter] of Object.entries(filters)) {
+                const displayName = fieldName === 'id' ? 'Document ID' : fieldName;
+                const operatorText = getOperatorDisplayText(filter.operator);
+                chipsHTML += `
+                    <div class="filter-chip">
+                        <span>${displayName} ${operatorText} "${filter.value}"</span>
+                        <button class="filter-chip-remove" onclick="removeFilter('${fieldName}')">×</button>
+                    </div>
+                `;
+            }
+
+            activeFiltersContainer.innerHTML = chipsHTML;
+        }
+
+        function getOperatorDisplayText(operator) {
+            const operatorMap = {
+                'contains': 'contains',
+                'equals': '=',
+                'starts_with': 'starts with',
+                'ends_with': 'ends with',
+                'greater': '>',
+                'less': '<',
+                'greater_equal': '>=',
+                'less_equal': '<=',
+                'after': 'after',
+                'before': 'before'
+            };
+            return operatorMap[operator] || operator;
+        }
+
+        function removeFilter(fieldName) {
+            delete currentConsoleData.activeFilters[fieldName];
+
+            // Clear the input field
+            const filterId = `filter_${fieldName.replace(/[^a-zA-Z0-9]/g, '_')}`;
+            const input = document.getElementById(filterId);
+            if (input) {
+                input.value = '';
+            }
+
+            // Apply filters and refresh
+            currentConsoleData.currentPage = 0;
+            applyFiltersAndSearch();
+
+            if (currentConsoleData.sortColumn) {
+                applySortToFilteredDocuments();
+            }
+
+            updateCurrentPageDocuments();
+            renderConsoleTable();
+            updateActiveFilterChips();
+        }
+
+        function toggleSelectAll() {
+            const selectAll = document.getElementById('selectAll');
+            const checkboxes = document.querySelectorAll('.doc-checkbox');
+
+            checkboxes.forEach(cb => cb.checked = selectAll.checked);
+            updateBulkActions();
+        }
+
+        function updateBulkActions() {
+            const selectedBoxes = document.querySelectorAll('.doc-checkbox:checked');
+            const bulkDeleteBtn = document.getElementById('bulkDeleteBtn');
+
+            if (bulkDeleteBtn) {
+                bulkDeleteBtn.disabled = selectedBoxes.length === 0;
+                if (selectedBoxes.length > 0) {
+                    bulkDeleteBtn.textContent = `Delete Selected (${selectedBoxes.length})`;
+                } else {
+                    bulkDeleteBtn.textContent = 'Delete Selected';
+                }
+            }
+        }
+
+        async function refreshConsole() {
+            try {
+                await fetchConsoleDocuments();
+                renderConsoleTable();
+            } catch (error) {
+                console.error('Failed to refresh console:', error);
+                showErrorModal('Refresh Failed', `Failed to refresh console: ${error.message}`);
+            }
+        }
+
+        function showDocumentDetails(docId, index) {
+            const doc = currentConsoleData.documents[index];
+            if (!doc) return;
+
+            const modalContent = `
+                <div class="modal-overlay" onclick="closeModal()">
+                    <div class="modal-content" onclick="event.stopPropagation()">
+                        <div class="modal-header">
+                            <h3>📄 Document Details</h3>
+                            <button onclick="closeModal()" class="close-btn">✕</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="document-details">
+                                <div class="detail-section">
+                                    <strong>ID:</strong>
+                                    <code>${doc.id}</code>
+                                </div>
+                                <div class="detail-section">
+                                    <strong>Namespace:</strong>
+                                    <code>${currentConsoleData.namespace || 'default'}</code>
+                                </div>
+                                <div class="detail-section">
+                                    <strong>Metadata:</strong>
+                                    <pre style="background: #f5f5f5; padding: 10px; border-radius: 4px; overflow-x: auto;">${JSON.stringify(doc.metadata || {}, null, 2)}</pre>
+                                </div>
+                            </div>
+                            <div class="modal-actions">
+                                <button onclick="closeModal()" class="modal-btn modal-btn-cancel">Close</button>
+                                <button onclick="closeModal(); deleteConsoleDocument('${doc.id}')" class="modal-btn" style="background: #dc3545; color: white;">
+                                    Delete Document
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.body.insertAdjacentHTML('beforeend', modalContent);
+        }
+
+        async function deleteConsoleDocument(docId) {
+            showDeleteConfirmationModal(
+                'Delete Document',
+                `Are you sure you want to delete document "${docId}"?`,
+                'This action cannot be undone.',
+                () => executeDeleteConsoleDocument(docId)
+            );
+        }
+
+        async function executeDeleteConsoleDocument(docId) {
+
+            try {
+                const response = await fetch(`${API_URL}/indexes/${selectedIndex}/documents/${docId}?namespace=${encodeURIComponent(currentConsoleData.namespace)}`, {
+                    method: 'DELETE'
+                });
+
+                const result = await response.json();
+
+                if (!result.success) {
+                    throw new Error(result.error || 'Failed to delete document');
+                }
+
+                // Remove from current data and refresh table
+                currentConsoleData.documents = currentConsoleData.documents.filter(doc => doc.id !== docId);
+                renderConsoleTable();
+
+            } catch (error) {
+                console.error('Failed to delete document:', error);
+                showErrorModal('Delete Failed', `Failed to delete document: ${error.message}`);
+            }
+        }
+
+        async function bulkDeleteSelected() {
+            const selectedBoxes = document.querySelectorAll('.doc-checkbox:checked');
+            const selectedIds = Array.from(selectedBoxes).map(cb => cb.value);
+
+            if (selectedIds.length === 0) return;
+
+            showDeleteConfirmationModal(
+                'Bulk Delete Documents',
+                `Are you sure you want to delete ${selectedIds.length} selected documents?`,
+                'This action cannot be undone.',
+                () => executeBulkDelete(selectedIds)
+            );
+        }
+
+        async function executeBulkDelete(selectedIds) {
+
+            try {
+                showLoadingOverlay('🗑️ Deleting Documents', `Removing ${selectedIds.length} documents...`);
+
+                const response = await fetch(`${API_URL}/indexes/${selectedIndex}/documents/delete-many`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        ids: selectedIds,
+                        namespace: currentConsoleData.namespace
+                    })
+                });
+
+                const result = await response.json();
+                hideLoadingOverlay();
+
+                if (!result.success) {
+                    throw new Error(result.error || 'Failed to delete documents');
+                }
+
+                // Remove deleted documents and refresh
+                currentConsoleData.documents = currentConsoleData.documents.filter(doc => !selectedIds.includes(doc.id));
+                renderConsoleTable();
+
+            } catch (error) {
+                hideLoadingOverlay();
+                console.error('Failed to delete documents:', error);
+                showErrorModal('Bulk Delete Failed', `Failed to delete documents: ${error.message}`);
+            }
+        }
+
+        // Add event listeners for checkbox changes
+        document.addEventListener('change', function(e) {
+            if (e.target.classList.contains('doc-checkbox')) {
+                updateBulkActions();
+            }
+        });
 
         // Loading overlay functions
         function showLoadingOverlay(title, subtitle) {
