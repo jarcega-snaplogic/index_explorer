@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Test</title>
+</head>
+<body>
+    <h1>Namespace Debug Test</h1>
+    <div id="output"></div>
+
+    <script>
+        // Test the exact same logic in isolation
+        console.log('Starting debug test...');
+
+        fetch('http://localhost:3001/api/indexes/autorfp/stats')
+            .then(response => response.json())
+            .then(data => {
+                console.log('API Response:', data);
+
+                const stats = data.data;
+                const namespaces = stats.namespaces || {};
+
+                console.log('Namespaces object:', namespaces);
+                console.log('Number of namespaces:', Object.keys(namespaces).length);
+
+                let html = `
+                    <h2>Raw API Data Test</h2>
+                    <p>Success: ${data.success}</p>
+                    <p>Total Records: ${stats.totalRecordCount}</p>
+                    <p>Dimension: ${stats.dimension}</p>
+                    <p>Namespace Count: ${Object.keys(namespaces).length}</p>
+                    <h3>Namespaces:</h3>
+                `;
+
+                Object.entries(namespaces).forEach(([name, info]) => {
+                    html += `<p>• ${name}: ${info.recordCount} records</p>`;
+                    console.log(`Namespace: ${name}, Records: ${info.recordCount}`);
+                });
+
+                document.getElementById('output').innerHTML = html;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('output').innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            });
+    </script>
+</body>
+</html>
