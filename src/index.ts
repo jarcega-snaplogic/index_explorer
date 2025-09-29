@@ -31,6 +31,16 @@ app.get('/health', (_req, res) => {
   });
 });
 
+// Health check for API path too
+app.get('/api/health', (_req, res) => {
+  res.json({
+    status: 'healthy',
+    service: 'Pinecone Index Manager',
+    message: 'Enterprise-grade vector management at your service',
+    timestamp: new Date().toISOString()
+  });
+});
+
 // API routes
 app.use('/api', indexRoutes);
 
