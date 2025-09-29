@@ -41,6 +41,9 @@ app.get('/api/health', (_req, res) => {
   });
 });
 
+// Serve static files (including our HTML frontend)
+app.use(express.static('.'));
+
 // API routes
 app.use('/api', indexRoutes);
 

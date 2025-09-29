@@ -1536,7 +1536,10 @@
     </div>
 
     <script>
-        const API_URL = 'http://localhost:3001/api';
+        // Environment-aware API URL configuration
+        const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://localhost:3001/api'
+            : '/api';
         let selectedIndex = '';
         let allIndexes = [];
         let currentSampleSize = 100; // Track current sample size for metadata analysis
@@ -1878,7 +1881,7 @@
             `;
 
             try {
-                const response = await fetch(`http://localhost:3001/api/indexes/${currentIndex}/metadata-profile?namespace=${namespace || ''}&maxDocuments=100`);
+                const response = await fetch(`${API_URL}/indexes/${currentIndex}/metadata-profile?namespace=${namespace || ''}&maxDocuments=100`);
                 const result = await response.json();
 
                 if (!result.success) {
@@ -2031,7 +2034,7 @@
                     `Analyzing ${currentSampleSize.toLocaleString()} documents for key "${keyName}"...`
                 );
 
-                const response = await fetch(`http://localhost:3001/api/indexes/${indexName}/metadata/${keyName}/samples?namespace=${namespace || ''}&count=10&type=random&maxDocuments=${currentSampleSize}`);
+                const response = await fetch(`${API_URL}/indexes/${indexName}/metadata/${keyName}/samples?namespace=${namespace || ''}&count=10&type=random&maxDocuments=${currentSampleSize}`);
                 const result = await response.json();
 
                 if (!result.success) {
@@ -2054,7 +2057,7 @@
                     `Analyzing ${currentSampleSize.toLocaleString()} documents for key "${keyName}"...`
                 );
 
-                const response = await fetch(`http://localhost:3001/api/indexes/${indexName}/metadata/${keyName}/samples?namespace=${namespace || ''}&count=10&type=common&maxDocuments=${currentSampleSize}`);
+                const response = await fetch(`${API_URL}/indexes/${indexName}/metadata/${keyName}/samples?namespace=${namespace || ''}&count=10&type=common&maxDocuments=${currentSampleSize}`);
                 const result = await response.json();
 
                 if (!result.success) {
@@ -2077,7 +2080,7 @@
                     `Computing comprehensive analysis for ${currentSampleSize.toLocaleString()} documents...`
                 );
 
-                const response = await fetch(`http://localhost:3001/api/indexes/${indexName}/metadata/${keyName}/stats?namespace=${namespace || ''}&maxDocuments=${currentSampleSize}`);
+                const response = await fetch(`${API_URL}/indexes/${indexName}/metadata/${keyName}/stats?namespace=${namespace || ''}&maxDocuments=${currentSampleSize}`);
                 const result = await response.json();
 
                 if (!result.success) {
@@ -2098,7 +2101,7 @@
             }
 
             try {
-                const response = await fetch(`http://localhost:3001/api/indexes/${indexName}/metadata/${keyName}/documents?namespace=${namespace || ''}`, {
+                const response = await fetch(`${API_URL}/indexes/${indexName}/metadata/${keyName}/documents?namespace=${namespace || ''}`, {
                     method: 'DELETE'
                 });
                 const result = await response.json();
@@ -2244,7 +2247,7 @@
             `;
 
             try {
-                const response = await fetch(`http://localhost:3001/api/indexes/${currentIndex}/metadata-profile?namespace=${namespace || ''}&maxDocuments=${sampleSize}`);
+                const response = await fetch(`${API_URL}/indexes/${currentIndex}/metadata-profile?namespace=${namespace || ''}&maxDocuments=${sampleSize}`);
                 const result = await response.json();
 
                 if (!result.success) {
