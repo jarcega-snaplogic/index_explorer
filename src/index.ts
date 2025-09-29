@@ -11,10 +11,23 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware - the boring but necessary stuff
-// Disable CSP entirely for OpenRun compatibility (they set their own)
+// Configure helmet to allow inline scripts and styles for the HTML frontend
 app.use(helmet({
-  contentSecurityPolicy: false, // Disable CSP - OpenRun sets its own
-})); // Security headers without CSP
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+      scriptSrcAttr: ["'unsafe-inline'"], // Allow inline event handlers like onclick
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      imgSrc: ["'self'", "data:", "https:"],
+      connectSrc: ["'self'"],
+      fontSrc: ["'self'", "https:", "data:"],
+      objectSrc: ["'none'"],
+      mediaSrc: ["'self'"],
+      frameSrc: ["'none'"],
+    },
+  },
+})); // Security headers with CSP allowing inline scripts
 app.use(cors()); // CORS for frontend
 app.use(express.json({ limit: '10mb' })); // JSON parsing with reasonable limit
 app.use(express.urlencoded({ extended: true }));
