@@ -1537,9 +1537,20 @@
 
     <script>
         // Environment-aware API URL configuration
-        const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-            ? 'http://localhost:3001/api'
-            : '/api';
+        const API_URL = (() => {
+            // Local development
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                return 'http://localhost:3001/api';
+            }
+            // OpenRun deployment - detect base path from URL
+            const pathSegments = window.location.pathname.split('/');
+            // If path includes /sl/pinecone-manager/, use that as base
+            if (pathSegments.includes('sl') && pathSegments.includes('pinecone-manager')) {
+                return '/sl/pinecone-manager/api';
+            }
+            // Default production
+            return '/api';
+        })();
         let selectedIndex = '';
         let allIndexes = [];
         let currentSampleSize = 100; // Track current sample size for metadata analysis
