@@ -45,3 +45,6 @@ client/node_modules/
 
 # OS files
 Thumbs.db
+
+# OpenRun deployment analysis (local only)
+openrun_compatibility.md
