@@ -1542,15 +1542,33 @@
             if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
                 return 'http://localhost:3001/api';
             }
-            // OpenRun deployment - detect base path from URL
-            const pathSegments = window.location.pathname.split('/');
-            // If path includes /sl/pinecone-manager/, use that as base
-            if (pathSegments.includes('sl') && pathSegments.includes('pinecone-manager')) {
-                return '/sl/pinecone-manager/api';
+
+            // Production/OpenRun - extract base path from current page URL
+            // This works regardless of where the app is deployed
+            let pathname = window.location.pathname;
+
+            // Remove trailing slash
+            if (pathname.endsWith('/')) {
+                pathname = pathname.slice(0, -1);
             }
-            // Default production
-            return '/api';
+
+            // Remove filename if present (index.html, simple-frontend.html, etc.)
+            if (pathname.endsWith('.html')) {
+                pathname = pathname.substring(0, pathname.lastIndexOf('/'));
+            }
+
+            // If we're at root, return /api
+            if (!pathname || pathname === '') {
+                return '/api';
+            }
+
+            // Otherwise, use the detected base path
+            return pathname + '/api';
         })();
+
+        // Debug log to verify API URL detection
+        console.log('🔍 Detected API_URL:', API_URL, '(from:', window.location.pathname + ')');
+
         let selectedIndex = '';
         let allIndexes = [];
         let currentSampleSize = 100; // Track current sample size for metadata analysis
