@@ -33,7 +33,7 @@ export interface MetadataProfile {
 export class MetadataAnalyzer {
 
   async analyzeNamespaceMetadata(indexName: string, namespace: string = '', maxDocuments: number = 100): Promise<MetadataProfile> {
-    console.log(`Starting metadata analysis for ${indexName}:${namespace || 'default'}`);
+    console.log(`Starting metadata analysis for ${indexName}:${(namespace || '(no namespace)')}`);
 
     // Fetch documents from the namespace
     const documents = await pineconeService.queryDocuments(indexName, {
@@ -122,7 +122,7 @@ export class MetadataAnalyzer {
 
     const profile: MetadataProfile = {
       indexName,
-      namespace: namespace || 'default',
+      namespace: (namespace || '(no namespace)'),
       totalDocuments: documents.length,
       analyzedDocuments: documents.length,
       keyProfiles,

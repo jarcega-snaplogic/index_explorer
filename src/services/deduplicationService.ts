@@ -69,7 +69,7 @@ export class DeduplicationService {
   ): Promise<DuplicationAnalysis> {
     const startTime = Date.now();
 
-    console.log(`🔍 Starting duplicate analysis for ${indexName}:${namespace || 'default'}`);
+    console.log(`🔍 Starting duplicate analysis for ${indexName}:${(namespace || '(no namespace)')}`);
 
     // Fetch documents from the namespace
     const documents = await pineconeService.queryDocuments(indexName, {
@@ -98,7 +98,7 @@ export class DeduplicationService {
 
     const analysis: DuplicationAnalysis = {
       indexName,
-      namespace: namespace || 'default',
+      namespace: (namespace || '(no namespace)'),
       totalDocuments: documents.length,
       duplicateGroups,
       potentialSavings: {

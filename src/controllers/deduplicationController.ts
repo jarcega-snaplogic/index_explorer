@@ -4,6 +4,12 @@
 import { Request, Response } from 'express';
 import deduplicationService from '../services/deduplicationService';
 
+// Helper function to normalize namespace ("default" string or empty -> empty string)
+const normalizeNamespace = (namespace: any): string => {
+  if (!namespace || namespace === 'default') return '';
+  return namespace as string;
+};
+
 export const analyzeForDuplicates = async (req: Request, res: Response) => {
   try {
     const { indexName } = req.params;
@@ -17,7 +23,7 @@ export const analyzeForDuplicates = async (req: Request, res: Response) => {
       strategy = 'keep-first'
     } = req.query;
 
-    console.log(`🔍 Duplicate analysis request for ${indexName}:${namespace || 'default'}`);
+    console.log(`🔍 Duplicate analysis request for ${indexName}:${(normalizeNamespace(namespace) || '(no namespace)')}`);
 
     // Parse array parameters if provided
     const parseArrayParam = (param: any): string[] | undefined => {
@@ -38,7 +44,7 @@ export const analyzeForDuplicates = async (req: Request, res: Response) => {
 
     const analysis = await deduplicationService.findMetadataDuplicates(
       indexName,
-      namespace as string || '',
+      normalizeNamespace(namespace),
       options
     );
 
@@ -74,7 +80,7 @@ export const previewDuplicates = async (req: Request, res: Response) => {
         message: 'Duplicate preview data is included in the analysis response',
         groupId: groupId || 'all',
         indexName,
-        namespace: namespace || 'default'
+        namespace: (normalizeNamespace(namespace) || '(no namespace)')
       },
       message: 'Preview data available in analysis results'
     });
@@ -95,7 +101,7 @@ export const deleteDuplicates = async (req: Request, res: Response) => {
     const { namespace } = req.query;
     const { duplicateGroups, confirmDeletion } = req.body;
 
-    console.log(`🗑️ Duplicate deletion request for ${indexName}:${namespace || 'default'}`);
+    console.log(`🗑️ Duplicate deletion request for ${indexName}:${(normalizeNamespace(namespace) || '(no namespace)')}`);
 
     // Safety check - require explicit confirmation
     if (!confirmDeletion) {
@@ -134,7 +140,7 @@ export const deleteDuplicates = async (req: Request, res: Response) => {
     const deletionResult = await deduplicationService.deleteDuplicates(
       indexName,
       duplicateGroups,
-      namespace as string || ''
+      normalizeNamespace(namespace)
     );
 
     res.json({
@@ -160,14 +166,14 @@ export const getDuplicationReport = async (req: Request, res: Response) => {
     const { indexName } = req.params;
     const { namespace, format = 'json' } = req.query;
 
-    console.log(`📊 Deduplication report request for ${indexName}:${namespace || 'default'}`);
+    console.log(`📊 Deduplication report request for ${indexName}:${(normalizeNamespace(namespace) || '(no namespace)')}`);
 
     // This could be expanded to generate comprehensive reports
     // For now, return basic metrics that could be gathered from previous analyses
 
     const reportData = {
       indexName,
-      namespace: namespace || 'default',
+      namespace: (normalizeNamespace(namespace) || '(no namespace)'),
       reportType: 'deduplication-summary',
       generatedAt: new Date().toISOString(),
       summary: {

@@ -5,16 +5,23 @@ import { Request, Response } from 'express';
 import metadataAnalyzer from '../services/metadataAnalyzer';
 import pineconeService from '../services/pineconeService';
 
+// Helper function to normalize namespace ("default" string or empty -> empty string)
+const normalizeNamespace = (namespace: any): string => {
+  if (!namespace || namespace === 'default') return '';
+  return namespace as string;
+};
+
 export const analyzeMetadata = async (req: Request, res: Response) => {
   try {
     const { indexName } = req.params;
     const { namespace, maxDocuments } = req.query;
+    const normalizedNamespace = normalizeNamespace(namespace);
 
-    console.log(`📊 Metadata analysis request for ${indexName}:${namespace || 'default'}`);
+    console.log(`📊 Metadata analysis request for ${indexName}:${normalizedNamespace || '(no namespace)'}`);
 
     const profile = await metadataAnalyzer.analyzeNamespaceMetadata(
       indexName,
-      namespace as string || '',
+      normalizedNamespace,
       parseInt(maxDocuments as string) || 100
     );
 
@@ -43,7 +50,7 @@ export const getSampleValues = async (req: Request, res: Response) => {
 
     // Get all documents with this key
     const documents = await pineconeService.queryDocuments(indexName, {
-      namespace: namespace as string || '',
+      namespace: normalizeNamespace(namespace),
       topK: parseInt(maxDocuments as string),
       includeMetadata: true,
       random: false
@@ -137,7 +144,7 @@ export const deleteDocumentsWithKey = async (req: Request, res: Response) => {
     const result = await metadataAnalyzer.deleteDocumentsWithKey(
       indexName,
       keyName,
-      namespace as string || ''
+      normalizeNamespace(namespace)
     );
 
     res.json({
@@ -165,7 +172,7 @@ export const getMetadataKeyStats = async (req: Request, res: Response) => {
 
     // Get all documents with this key for detailed analysis
     const documents = await pineconeService.queryDocuments(indexName, {
-      namespace: namespace as string || '',
+      namespace: normalizeNamespace(namespace),
       topK: parseInt(maxDocuments as string),
       includeMetadata: true,
       random: false

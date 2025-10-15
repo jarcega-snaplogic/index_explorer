@@ -1569,6 +1569,18 @@
         // Debug log to verify API URL detection
         console.log('🔍 Detected API_URL:', API_URL, '(from:', window.location.pathname + ')');
 
+        // Namespace utility functions for consistent handling
+        const NamespaceUtils = {
+            // Display empty namespace with friendly label
+            display: (namespace) => namespace || '(no namespace)',
+
+            // Normalize "default" or empty to actual default (empty string)
+            normalize: (namespace) => (!namespace || namespace === 'default') ? '' : namespace,
+
+            // Check if namespace is the default/empty one
+            isEmpty: (namespace) => !namespace || namespace === 'default'
+        };
+
         let selectedIndex = '';
         let allIndexes = [];
         let currentSampleSize = 100; // Track current sample size for metadata analysis
@@ -1694,7 +1706,7 @@
                 Object.entries(namespaces)
                     .sort(([,a], [,b]) => b.recordCount - a.recordCount)
                     .forEach(([name, info]) => {
-                        namespacesHTML += `&nbsp;&nbsp;• <a href="#" onclick="loadDocumentsFromNamespace('${selectedIndex}', '${name}')" style="color: #1976D2; text-decoration: none;">${name}</a>: ${info.recordCount.toLocaleString()} records<br>`;
+                        namespacesHTML += `&nbsp;&nbsp;• <a href="#" onclick="loadDocumentsFromNamespace('${selectedIndex}', '${name}')" style="color: #1976D2; text-decoration: none;">${NamespaceUtils.display(name)}</a>: ${info.recordCount.toLocaleString()} records<br>`;
                     });
                 namespacesHTML += '<br><em style="color: #1976D2; font-size: 12px;">💡 Click any namespace above to browse its documents</em><br>';
             }
@@ -1723,13 +1735,13 @@
             // Add namespace-level actions
             const namespaceActions = `
                 <div class="namespace-actions">
-                    <button class="namespace-btn inspect-btn" onclick="inspectMetadata('${namespace || 'default'}')">
+                    <button class="namespace-btn inspect-btn" onclick="inspectMetadata('${namespace}')">
                         🔍 Inspect Metadata
                     </button>
-                    <button class="namespace-btn dedupe-btn" onclick="deduplicateNamespace('${namespace || 'default'}')">
+                    <button class="namespace-btn dedupe-btn" onclick="deduplicateNamespace('${namespace}')">
                         🧪 Deduplicate
                     </button>
-                    <button class="namespace-btn console-namespace-btn" onclick="openDocumentConsole('${namespace || 'default'}')">
+                    <button class="namespace-btn console-namespace-btn" onclick="openDocumentConsole('${namespace}')">
                         📋 Document Console
                     </button>
                     <span style="margin-left: auto; color: #666; font-size: 14px;">
@@ -1888,6 +1900,9 @@
         }
 
         async function inspectMetadata(namespace) {
+            // Normalize namespace parameter
+            namespace = NamespaceUtils.normalize(namespace);
+
             const currentIndex = document.getElementById('index-dropdown').value;
             if (!currentIndex) {
                 alert('Please select an index first');
@@ -1899,13 +1914,13 @@
             container.innerHTML = `
                 <div class="loading">
                     <h3>🔍 Analyzing Metadata Patterns...</h3>
-                    <p>Profiling metadata in namespace "${namespace || 'default'}"</p>
+                    <p>Profiling metadata in namespace "${NamespaceUtils.display(namespace)}"</p>
                     <p>This may take a moment for large indexes...</p>
                 </div>
             `;
 
             try {
-                const response = await fetch(`${API_URL}/indexes/${currentIndex}/metadata-profile?namespace=${namespace || ''}&maxDocuments=100`);
+                const response = await fetch(`${API_URL}/indexes/${currentIndex}/metadata-profile?namespace=${NamespaceUtils.normalize(namespace)}&maxDocuments=100`);
                 const result = await response.json();
 
                 if (!result.success) {
@@ -1942,7 +1957,7 @@
                     <div class="profile-header">
                         <h2>🔍 Metadata Profile - ${profile.indexName}</h2>
                         <div class="profile-info">
-                            <span><strong>Namespace:</strong> ${namespace || 'default'}</span>
+                            <span><strong>Namespace:</strong> ${NamespaceUtils.display(namespace)}</span>
                             <span><strong>Documents Analyzed:</strong> ${profile.analyzedDocuments}</span>
                             <span><strong>Unique Keys:</strong> ${profile.analysisMetrics.totalUniqueKeys}</span>
                             <span><strong>Keys/Doc:</strong> ${profile.analysisMetrics.minKeysPerDocument}-${profile.analysisMetrics.maxKeysPerDocument} (avg: ${profile.analysisMetrics.avgKeysPerDocument})</span>
@@ -2058,7 +2073,7 @@
                     `Analyzing ${currentSampleSize.toLocaleString()} documents for key "${keyName}"...`
                 );
 
-                const response = await fetch(`${API_URL}/indexes/${indexName}/metadata/${keyName}/samples?namespace=${namespace || ''}&count=10&type=random&maxDocuments=${currentSampleSize}`);
+                const response = await fetch(`${API_URL}/indexes/${indexName}/metadata/${keyName}/samples?namespace=${NamespaceUtils.normalize(namespace)}&count=10&type=random&maxDocuments=${currentSampleSize}`);
                 const result = await response.json();
 
                 if (!result.success) {
@@ -2081,7 +2096,7 @@
                     `Analyzing ${currentSampleSize.toLocaleString()} documents for key "${keyName}"...`
                 );
 
-                const response = await fetch(`${API_URL}/indexes/${indexName}/metadata/${keyName}/samples?namespace=${namespace || ''}&count=10&type=common&maxDocuments=${currentSampleSize}`);
+                const response = await fetch(`${API_URL}/indexes/${indexName}/metadata/${keyName}/samples?namespace=${NamespaceUtils.normalize(namespace)}&count=10&type=common&maxDocuments=${currentSampleSize}`);
                 const result = await response.json();
 
                 if (!result.success) {
@@ -2104,7 +2119,7 @@
                     `Computing comprehensive analysis for ${currentSampleSize.toLocaleString()} documents...`
                 );
 
-                const response = await fetch(`${API_URL}/indexes/${indexName}/metadata/${keyName}/stats?namespace=${namespace || ''}&maxDocuments=${currentSampleSize}`);
+                const response = await fetch(`${API_URL}/indexes/${indexName}/metadata/${keyName}/stats?namespace=${NamespaceUtils.normalize(namespace)}&maxDocuments=${currentSampleSize}`);
                 const result = await response.json();
 
                 if (!result.success) {
@@ -2125,7 +2140,7 @@
             }
 
             try {
-                const response = await fetch(`${API_URL}/indexes/${indexName}/metadata/${keyName}/documents?namespace=${namespace || ''}`, {
+                const response = await fetch(`${API_URL}/indexes/${indexName}/metadata/${keyName}/documents?namespace=${NamespaceUtils.normalize(namespace)}`, {
                     method: 'DELETE'
                 });
                 const result = await response.json();
@@ -2271,7 +2286,7 @@
             `;
 
             try {
-                const response = await fetch(`${API_URL}/indexes/${currentIndex}/metadata-profile?namespace=${namespace || ''}&maxDocuments=${sampleSize}`);
+                const response = await fetch(`${API_URL}/indexes/${currentIndex}/metadata-profile?namespace=${NamespaceUtils.normalize(namespace)}&maxDocuments=${sampleSize}`);
                 const result = await response.json();
 
                 if (!result.success) {
@@ -2292,6 +2307,9 @@
         }
 
         async function deduplicateNamespace(namespace) {
+            // Normalize namespace parameter
+            namespace = NamespaceUtils.normalize(namespace);
+
             if (!selectedIndex) {
                 alert('Please select an index first');
                 return;
@@ -2492,7 +2510,7 @@
                                 <ul style="margin: 10px 0; color: #856404;">
                                     <li><strong>${documentsToDelete}</strong> ${actionDescription}</li>
                                     <li><strong>${groupsToDelete.length}</strong> duplicate groups affected</li>
-                                    <li>From namespace: <strong>${namespace || 'default'}</strong></li>
+                                    <li>From namespace: <strong>${NamespaceUtils.display(namespace)}</strong></li>
                                 </ul>
                                 <p style="margin: 10px 0 0 0; color: #dc3545; font-weight: bold;">
                                     This will permanently remove these documents from your Pinecone index!
@@ -2646,6 +2664,9 @@
         }
 
         async function openDocumentConsole(namespace) {
+            // Normalize namespace parameter
+            namespace = NamespaceUtils.normalize(namespace);
+
             if (!selectedIndex) {
                 showErrorModal('No Index Selected', 'Please select an index first.');
                 return;
@@ -3734,7 +3755,7 @@
                                 </div>
                                 <div class="detail-section">
                                     <strong>Namespace:</strong>
-                                    <code>${currentConsoleData.namespace || 'default'}</code>
+                                    <code>${NamespaceUtils.display(currentConsoleData.namespace)}</code>
                                 </div>
                                 <div class="detail-section">
                                     <strong>Metadata:</strong>

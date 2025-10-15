@@ -85,7 +85,7 @@ export class PineconeService {
       const vectorObjects = allVectorObjects;
 
       if (vectorObjects.length === 0) {
-        console.log(`No vector IDs found in ${indexName} ${options.namespace ? `namespace: ${options.namespace}` : '(default namespace)'}`);
+        console.log(`No vector IDs found in ${indexName} ${options.namespace ? `namespace: ${options.namespace}` : '(no namespace)'}`);
         return [];
       }
 
