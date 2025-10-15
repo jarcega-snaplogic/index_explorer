@@ -34,29 +34,35 @@
         <p id="redirect-link">If you are not redirected automatically, <a href="./simple-frontend.html">click here</a>.</p>
     </div>
     <script>
-        // Smart redirect that works in any deployment path
-        // Get current directory path and append simple-frontend.html
-        let currentPath = window.location.pathname;
+        // Smart redirect matching simple-frontend.html path detection logic
+        let pathname = window.location.pathname;
 
-        // Remove index.html if present
-        if (currentPath.endsWith('index.html')) {
-            currentPath = currentPath.substring(0, currentPath.lastIndexOf('/'));
+        // Remove trailing slash
+        if (pathname.endsWith('/')) {
+            pathname = pathname.slice(0, -1);
         }
 
-        // Ensure trailing slash
-        if (!currentPath.endsWith('/')) {
-            currentPath += '/';
+        // Remove filename if present (.html file)
+        if (pathname.endsWith('.html')) {
+            pathname = pathname.substring(0, pathname.lastIndexOf('/'));
+        }
+
+        // If empty or root, default to root
+        if (!pathname || pathname === '') {
+            pathname = '';
         }
 
         // Build target URL
-        const targetUrl = window.location.origin + currentPath + 'simple-frontend.html';
+        const targetUrl = window.location.origin + pathname + '/simple-frontend.html';
 
         // Update the manual link
         document.getElementById('redirect-link').innerHTML =
             `If you are not redirected automatically, <a href="${targetUrl}">click here</a>.`;
 
         // Perform redirect
-        console.log('Redirecting to:', targetUrl);
+        console.log('🔍 Current pathname:', window.location.pathname);
+        console.log('📍 Detected base path:', pathname);
+        console.log('🎯 Redirecting to:', targetUrl);
         window.location.href = targetUrl;
     </script>
 </body>
