@@ -240,6 +240,19 @@
             font-size: 12px;
             border-top: 1px solid #ddd;
         }
+        .version-badge {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(103, 126, 234, 0.9);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            z-index: 9999;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
 
         /* Metadata Profile Styles */
         .metadata-profile {
@@ -1528,6 +1541,9 @@
             </div>
         </div>
     </div>
+
+    <!-- Version badge for deployment verification -->
+    <div class="version-badge">v1.1.0</div>
 
     <div class="main-content">
         <div class="container">
