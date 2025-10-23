@@ -60,6 +60,17 @@
             display: flex;
             gap: 20px;
         }
+        .user-badge {
+            color: white;
+            font-size: 14px;
+            margin-left: 20px;
+            padding: 6px 14px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            display: none;
+            align-items: center;
+            gap: 6px;
+        }
         .main-content {
             margin-top: 76px;
             padding: 20px;
@@ -1511,6 +1522,10 @@
                 <span id="namespace-count"></span>
                 <span id="record-count"></span>
             </div>
+            <div class="user-badge" id="user-badge">
+                <span>👤</span>
+                <span id="user-email"></span>
+            </div>
         </div>
     </div>
 
@@ -1585,10 +1600,29 @@
         let allIndexes = [];
         let currentSampleSize = 100; // Track current sample size for metadata analysis
 
+        // Load user info from OpenRun authentication
+        async function loadUserInfo() {
+            try {
+                const response = await fetch(`${API_URL}/user`);
+                const data = await response.json();
+
+                if (data.success && data.data.authenticated && data.data.email) {
+                    document.getElementById('user-email').textContent = data.data.email;
+                    document.getElementById('user-badge').style.display = 'flex';
+                    console.log('✅ Authenticated user:', data.data.email);
+                } else {
+                    console.log('ℹ️ No authenticated user detected');
+                }
+            } catch (error) {
+                console.error('Failed to load user info:', error);
+            }
+        }
+
         // Load indexes on page load
         document.addEventListener('DOMContentLoaded', () => {
             loadIndexes();
             setupIndexDropdown();
+            loadUserInfo();
         });
 
         async function loadIndexes() {
