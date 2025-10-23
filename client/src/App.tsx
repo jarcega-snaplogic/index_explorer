@@ -20,7 +20,10 @@ interface Document {
   values?: number[];
 }
 
-const API_URL = 'http://localhost:3001/api';
+// Detect if running in OpenRun or local development
+const API_URL = window.location.pathname.includes('/sl/pinecone-manager')
+  ? '/sl/pinecone-manager/api'
+  : 'http://localhost:3001/api';
 
 function App() {
   const [indexes, setIndexes] = useState<PineconeIndex[]>([]);
@@ -29,10 +32,25 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string>('');
   const [stats, setStats] = useState<any>(null);
+  const [userEmail, setUserEmail] = useState<string | null>(null);
 
-  // Load indexes on mount
+  // Load user info from OpenRun authentication
+  const loadUserInfo = async () => {
+    try {
+      const response = await fetch(`${API_URL}/user`);
+      const data = await response.json();
+      if (data.success && data.data.authenticated) {
+        setUserEmail(data.data.email);
+      }
+    } catch (err) {
+      console.error('Failed to load user info:', err);
+    }
+  };
+
+  // Load indexes and user info on mount
   useEffect(() => {
     loadIndexes();
+    loadUserInfo();
   }, []);
 
   const loadIndexes = async () => {
@@ -111,11 +129,29 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>🦉 Pinecone Index Manager</h1>
-        <p style={{ fontSize: '14px', color: '#888' }}>
-          Built by Jean-Claude - Because someone has to manage this mess
-        </p>
+      <header className="App-header" style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexWrap: 'wrap'
+      }}>
+        <div>
+          <h1>🦉 Pinecone Index Manager</h1>
+          <p style={{ fontSize: '14px', color: '#888' }}>
+            Built by Jean-Claude - Because someone has to manage this mess
+          </p>
+        </div>
+        {userEmail && (
+          <div style={{
+            background: 'rgba(255, 255, 255, 0.1)',
+            padding: '8px 16px',
+            borderRadius: '20px',
+            fontSize: '14px',
+            color: '#fff'
+          }}>
+            👤 {userEmail}
+          </div>
+        )}
       </header>
 
       <div style={{ padding: '20px' }}>

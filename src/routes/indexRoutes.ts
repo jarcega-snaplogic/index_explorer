@@ -5,6 +5,43 @@ import * as deduplicationController from '../controllers/deduplicationController
 
 const router = Router();
 
+// User information endpoint - reads X-Openrun-User header
+router.get('/user', (req, res) => {
+  try {
+    const userHeader = req.headers['x-openrun-user'] as string | undefined;
+
+    if (!userHeader) {
+      return res.json({
+        success: true,
+        data: {
+          authenticated: false,
+          email: null,
+          provider: null,
+          userString: null
+        }
+      });
+    }
+
+    // Parse the format: provider:email (e.g., "google:test@example.com")
+    const [provider, email] = userHeader.split(':');
+
+    res.json({
+      success: true,
+      data: {
+        authenticated: true,
+        email: email || userHeader,
+        provider: provider || 'unknown',
+        userString: userHeader
+      }
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      error: error.message || 'Failed to get user information'
+    });
+  }
+});
+
 // Index operations
 router.get('/indexes', indexController.listIndexes);
 router.get('/indexes/:indexName/stats', indexController.getIndexStats);
