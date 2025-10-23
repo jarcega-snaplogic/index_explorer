@@ -25,7 +25,7 @@ router.get('/user', (req, res) => {
     // Parse the format: provider:email (e.g., "google:test@example.com")
     const [provider, email] = userHeader.split(':');
 
-    res.json({
+    return res.json({
       success: true,
       data: {
         authenticated: true,
@@ -35,7 +35,7 @@ router.get('/user', (req, res) => {
       }
     });
   } catch (error: any) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       error: error.message || 'Failed to get user information'
     });
