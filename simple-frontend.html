@@ -53,17 +53,21 @@
             cursor: pointer;
             min-width: 200px;
         }
+        .taskbar-right-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-left: auto;
+        }
         .taskbar-stats {
             color: white;
             font-size: 14px;
-            margin-left: auto;
             display: flex;
             gap: 20px;
         }
         .user-badge {
             color: white;
             font-size: 14px;
-            margin-left: 20px;
             padding: 6px 14px;
             background: rgba(255, 255, 255, 0.15);
             border-radius: 20px;
@@ -1531,19 +1535,21 @@
                     <option value="">Select an index...</option>
                 </select>
             </div>
-            <div class="taskbar-stats" id="taskbar-stats" style="display: none;">
-                <span id="namespace-count"></span>
-                <span id="record-count"></span>
-            </div>
-            <div class="user-badge" id="user-badge">
-                <span>👤</span>
-                <span id="user-email"></span>
+            <div class="taskbar-right-section">
+                <div class="taskbar-stats" id="taskbar-stats" style="display: none;">
+                    <span id="namespace-count"></span>
+                    <span id="record-count"></span>
+                </div>
+                <div class="user-badge" id="user-badge">
+                    <span>👤</span>
+                    <span id="user-email"></span>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Version badge for deployment verification -->
-    <div class="version-badge">v1.1.0</div>
+    <div class="version-badge">v1.1.1</div>
 
     <div class="main-content">
         <div class="container">
